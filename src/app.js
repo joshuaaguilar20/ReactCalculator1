@@ -92,6 +92,10 @@ class App extends React.Component {
         this.result = Math.round(10000 * op1 / op2) /10000
         this.displayFunction(this.result);
         break;
+      case 'mod':
+        this.result = op1 % op2
+        this.displayFunction(this.result);
+        break;
       default:
         alert("Invalid Op '" + this.operator + "'")
     }
@@ -149,12 +153,13 @@ class App extends React.Component {
 
 render(){
   return (
-    <div>
+    <div> 
+    <h1>React Calculator</h1>
   <div className="container">
   <div className="item item-header" id="display">{this.state.display}</div>
   <button className="btn silver" id="clear" onClick={this.clearDisplay}>C</button>
-  <button className="btn silver">+/-</button>
-  <button className="btn silver">%</button>
+  <button className="btn silver" onClick={() => this.operatorFunction('add')}>+</button>
+  <button className="btn silver" onClick={() => this.operatorFunction('mod')} >%</button>
   <button className="btn orange" id="divide" onClick={() => this.operatorFunction('div')}>÷</button>
   
   <button className="btn" id="seven" onClick={() => this.handleNumber(7)}>7</button>
@@ -173,7 +178,7 @@ render(){
   <button className="btn orange" id="add" onClick={() => this.operatorFunction('add')}>+</button>
   
   <button className="btn" id="zero" onClick={() => this.handleNumber(0)}>0</button>
-  <button className="btn">11</button>
+  <button className="btn" id="clear" onClick={this.clearDisplay}>C</button>
   <button className="btn" id="decimal" onClick={() => this.handleNumber('.')}>.</button>
   <button className="btn orange" id="equals" onClick={() => this.calculate()}>=</button>
   
